@@ -33,14 +33,19 @@ export class ToolBarView extends SKContainer implements Observer {
     this.addChild(this.clearGames);
 
     this.addGame.addEventListener("action", () => {
+      if (gameCounter >= 4) return;
       gameProgressModel.create(++gameCounter);
     });
     
     this.deleteGame.addEventListener("action", () => {
+      
+      if (gameCounter <= 0) return;
+      gameCounter--;
       this.gameProgressModel.delete();
     });
 
     this.clearGames.addEventListener("action", () => {
+      gameCounter = 0;
       while (this.gameProgressModel.length() > 0) {
         this.gameProgressModel.delete();
       }

@@ -2,7 +2,6 @@ import { Layout, SKContainer } from "simplekit/imperative-mode";
 
 // local imports
 import { Observer } from "../../observer";
-import { makeContainer } from "../../utils/makeContainer";
 
 export class GameProgressBarView extends SKContainer implements Observer {
   //#region observer pattern
