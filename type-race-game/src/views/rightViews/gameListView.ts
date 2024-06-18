@@ -1,38 +1,37 @@
 import { SKContainer } from "simplekit/imperative-mode";
 
 // local imports
-import { makeStackColLayout } from "./stackCol";
 import { Observer } from "../../observer";
-import { makeContainer } from "../../utils/makeContainer";
+import { makeFillColumnLayout } from "../../utils/fillColumn";
+import {
+  GameProgressModel,
+} from "../../models/gameProgressModel";
+
 
 export class ListView extends SKContainer implements Observer {
   //#region observer pattern
 
   update(): void {
-   
+    this.clearChildren();
+    const gameProgressBars = this.gameProgressModel.all();
+    for (const gameProgressBar of gameProgressBars) {
+      this.addChild(gameProgressBar);
+    }
+    
   }
-
   //#endregion
 
-  constructor() {
+  constructor(private gameProgressModel: GameProgressModel) {
     super();
-
     // setup the view design
     this.padding = 5;
     this.fillWidth = 1;
     this.fillHeight = 1;
-    for (let i = 0; i < 20; i++) {
-        const a = makeContainer(`${i + 1}`, "orange");
-        a.padding = 10;
-        a.fillWidth = 1;
-        a.fillHeight = 1;
-        a.border = "black";
-        this.addChild(a);
-    }
 
+    // setup the view
     // use a custom layout in this app
-    this.layoutMethod = makeStackColLayout();
-     
-    
+    this.layoutMethod = makeFillColumnLayout({ gap: 10 });
+    this.gameProgressModel.addObserver(this);
+    this.update();
   }
 }

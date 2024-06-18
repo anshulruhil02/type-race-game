@@ -7,6 +7,7 @@ import {
 import { Observer } from "../observer.ts";
 import { LeftContainerView } from "./leftViews/leftContainerView.ts";
 import { RightContainerView } from "./rightViews/rightContainerView.ts";
+import { GameProgressModel } from "../models/gameProgressModel.ts";
 
 export class GameView extends SKContainer implements Observer {
   //#region observer pattern
@@ -14,7 +15,7 @@ export class GameView extends SKContainer implements Observer {
   update(): void {
   }
 
-  constructor() {
+  constructor(private gameProgressModel: GameProgressModel) {
     super();
 
     // setup the view
@@ -25,6 +26,6 @@ export class GameView extends SKContainer implements Observer {
     this.fillHeight = 1;
     this.layoutMethod = Layout.makeFillRowLayout();
     this.addChild(new LeftContainerView());
-    this.addChild(new RightContainerView());
+    this.addChild(new RightContainerView(gameProgressModel));
   }
 }
