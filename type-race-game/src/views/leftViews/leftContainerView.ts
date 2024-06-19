@@ -19,7 +19,7 @@ import {
   
       // setup the view
       this.id = "leftContainer";
-      this.fill = "yellow";
+      this.fill = "white";
       this.border = "black";
       this.fillWidth = 2;
       this.fillHeight = 1;

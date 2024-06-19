@@ -1,4 +1,6 @@
-import { SKContainer } from "simplekit/imperative-mode";
+import {
+  SKContainer,
+} from "simplekit/imperative-mode";
 
 // local imports
 import { Observer } from "../../observer";
@@ -15,7 +17,8 @@ export class ListView extends SKContainer implements Observer {
     this.clearChildren();
     const gameProgressBars = this.gameProgressModel.all();
     for (const gameProgressBar of gameProgressBars) {
-      this.addChild(gameProgressBar);
+      const gameBar = gameProgressBar.container;
+      this.addChild(gameBar);
     }
     
   }
@@ -27,7 +30,7 @@ export class ListView extends SKContainer implements Observer {
     this.padding = 5;
     this.fillWidth = 1;
     this.fillHeight = 1;
-
+    //this.gameProgressModel.select();
     // setup the view
     // use a custom layout in this app
     this.layoutMethod = makeFillColumnLayout({ gap: 10 });
@@ -35,3 +38,5 @@ export class ListView extends SKContainer implements Observer {
     this.update();
   }
 }
+
+

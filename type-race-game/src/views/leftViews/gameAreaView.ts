@@ -18,16 +18,15 @@ export class GameAreaView extends SKContainer implements Observer {
         this.id = "right";
         this.fill = "red";
         this.border = "black";
-        //this.padding = 10;
         this.fillWidth = 1;
         this.fillHeight = 2;
         
           
-          const root = makeContainer("root", "lightyellow");
+          const root = makeContainer("root", "white");
           root.padding = 10;
           
           for (let i = 0; i < 10; i++) {
-            const a = makeContainer(`${i + 1}`, "lightblue");
+            const a = makeContainer(`${i + 1}`, "white");
             a.padding = 10;
             a.margin = 10;
             a.x = random(0, 300);

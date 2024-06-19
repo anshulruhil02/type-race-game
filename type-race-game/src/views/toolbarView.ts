@@ -1,23 +1,17 @@
 import { SKButton, SKContainer, Layout } from "simplekit/imperative-mode";
-
-// local imports
 import { Observer } from "../observer";
 import { GameProgressModel } from "../models/gameProgressModel.ts";
+import { GameController } from "../controllers/gameController.ts";
 
-
-let gameCounter = 0;
 export class ToolBarView extends SKContainer implements Observer {
-  //#region observer pattern
-
   update(): void {}
 
-  private addGame = new SKButton({ text: "Add Game" , width: 150, height: 30});
-  private deleteGame = new SKButton({ text: "Delete Game" , width: 150, height: 30});
-  private clearGames = new SKButton({ text: "Clear Games" , width: 150, height: 30});
+  private addGameButton = new SKButton({ text: "Add Game", width: 150, height: 30 });
+  private deleteGameButton = new SKButton({ text: "Delete Game", width: 150, height: 30 });
+  private clearGamesButton = new SKButton({ text: "Clear Games", width: 150, height: 30 });
 
-  constructor(private gameProgressModel: GameProgressModel) {
+  constructor(private gameProgressModel: GameProgressModel, private gameController: GameController) {
     super();
-    // setup the view
     this.id = "toolbar";
     this.fill = "lightgray";
     this.border = "black";
@@ -25,31 +19,15 @@ export class ToolBarView extends SKContainer implements Observer {
     this.fillWidth = 1;
     this.height = 50;
 
-
     this.layoutMethod = Layout.makeFillRowLayout({ gap: 10 });
 
-    this.addChild(this.addGame);
-    this.addChild(this.deleteGame);
-    this.addChild(this.clearGames);
+    this.addChild(this.addGameButton);
+    this.addChild(this.deleteGameButton);
+    this.addChild(this.clearGamesButton);
 
-    this.addGame.addEventListener("action", () => {
-      if (gameCounter >= 4) return;
-      gameProgressModel.create(++gameCounter);
-    });
-    
-    this.deleteGame.addEventListener("action", () => {
-      
-      if (gameCounter <= 0) return;
-      gameCounter--;
-      this.gameProgressModel.delete();
-    });
-
-    this.clearGames.addEventListener("action", () => {
-      gameCounter = 0;
-      while (this.gameProgressModel.length() > 0) {
-        this.gameProgressModel.delete();
-      }
-    });
+    this.addGameButton.addEventListener("action", () => this.gameController.addGame());
+    this.deleteGameButton.addEventListener("action", () => this.gameController.deleteGame());
+    this.clearGamesButton.addEventListener("action", () => this.gameController.clearGames());
 
     this.gameProgressModel.addObserver(this);
   }
