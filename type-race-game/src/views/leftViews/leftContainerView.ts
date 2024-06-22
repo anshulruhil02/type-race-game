@@ -7,6 +7,7 @@ import {
   import { makeFillColumnLayout } from "../../utils/fillColumn.ts";
   import { GameConsoleView } from "./gameConsoleViews/gameConsoleView.ts";
   import { GameAreaView } from "./gameAreaView.ts";
+import { GameProgressModel } from "../../models/gameProgressModel.ts";
   
   export class LeftContainerView extends SKContainer implements Observer {
     //#region observer pattern
@@ -14,7 +15,7 @@ import {
     update(): void {
     }
   
-    constructor() {
+    constructor(gameProgressModel: GameProgressModel) {
       super();
   
       // setup the view
@@ -24,7 +25,7 @@ import {
       this.fillWidth = 2;
       this.fillHeight = 1;
       this.layoutMethod = makeFillColumnLayout();
-      this.addChild(new GameAreaView());
-      this.addChild(new GameConsoleView());
+      this.addChild(new GameAreaView(gameProgressModel));
+      this.addChild(new GameConsoleView(gameProgressModel));
     }
   }

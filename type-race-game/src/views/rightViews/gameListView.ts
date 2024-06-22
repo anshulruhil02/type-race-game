@@ -18,6 +18,12 @@ export class ListView extends SKContainer implements Observer {
     const gameProgressBars = this.gameProgressModel.all();
     for (const gameProgressBar of gameProgressBars) {
       const gameBar = gameProgressBar.container;
+      const progressBarContainer = gameProgressBar.progressBarContainer;
+      progressBarContainer.fillHeight = 1;
+
+      // Add the progress bar container to the game bar
+      gameBar.addChild(progressBarContainer);
+
       this.addChild(gameBar);
     }
     
@@ -38,5 +44,3 @@ export class ListView extends SKContainer implements Observer {
     this.update();
   }
 }
-
-

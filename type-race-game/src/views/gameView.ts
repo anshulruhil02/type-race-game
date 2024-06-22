@@ -25,7 +25,7 @@ export class GameView extends SKContainer implements Observer {
     this.fillWidth = 1;
     this.fillHeight = 1;
     this.layoutMethod = Layout.makeFillRowLayout();
-    this.addChild(new LeftContainerView());
+    this.addChild(new LeftContainerView(gameProgressModel));
     this.addChild(new RightContainerView(gameProgressModel));
   }
 }

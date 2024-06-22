@@ -5,15 +5,15 @@ import {
   
 // local imports
 import { Observer } from "../../../../observer.ts";
-import { FonstSizeView } from "./fonstSize.ts";
-import { NumWordsView } from "./numWords.ts";
+import { FontAndNumWordsView } from "./fonstSize.ts";
+import { GameProgressModel } from "../../../../models/gameProgressModel.ts";
 
 export class GamePropertiesInputView extends SKContainer implements Observer {
     update(): void {
         // do nothing
     }
 
-    constructor() {
+    constructor(private gameProgressModel: GameProgressModel) {
         super();
         this.id = "gamePropertiesInput";
         this.fill = "white";
@@ -22,8 +22,7 @@ export class GamePropertiesInputView extends SKContainer implements Observer {
         this.fillWidth = 1;
         this.fillHeight = 1;
         this.layoutMethod = Layout.makeFillRowLayout( {gap: 5} );
-        this.addChild(new FonstSizeView());
-        this.addChild(new NumWordsView());
+        this.addChild(new FontAndNumWordsView(gameProgressModel));
     }
 }
 

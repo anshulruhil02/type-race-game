@@ -16,7 +16,7 @@ export class RightContainerView extends SKContainer implements Observer {
 
     // setup the view
     this.id = "rightContainer";
-    this.fill = "green";
+    this.fill = "white";
     this.border = "black";
     this.fillWidth = 1;
     this.fillHeight = 1;

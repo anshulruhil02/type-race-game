@@ -14,7 +14,7 @@ export class GameProgessView extends SKContainer implements Observer {
     constructor() {
         super();
         this.id = "gameProgress";
-        this.fill = "brown";
+        this.fill = "white";
         this.border = "black";
         this.padding = 10;
         this.fillWidth = 1;

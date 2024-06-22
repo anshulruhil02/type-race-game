@@ -14,7 +14,7 @@ export class ResetButtonView extends SKContainer implements Observer {
     constructor() {
         super();
         this.id = "resetButton";
-        this.fill = "black";
+        this.fill = "white";
         this.border = "black";
         this.padding = 10;
         this.fillWidth = 1;
