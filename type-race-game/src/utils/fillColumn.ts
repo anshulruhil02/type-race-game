@@ -41,14 +41,9 @@ function fillColumnLayout(
   const remaining = available - basisTotal;
 
   if (Settings.debugLayout)
-    console.log(
-      ` fillColumnLayout children:${elements.length} basisTotal:${available} remaining:${remaining}`
-    );
 
   if (Settings.layoutWarnings && remaining < 0) {
-    console.warn(
-      `fillColumnLayout: not enough space (container:${boundsHeight} < children:${basisTotal}) `
-    );
+
   }
 
   // get total fill proportion

@@ -8,7 +8,7 @@ import {
   
   const debug = true;
   
-  if (debug) console.log("load dispatch-mouse module");
+  //if (debug) console.log("load dispatch-mouse module");
   
   // (from back to front)
   function buildTargetRoute(
@@ -45,7 +45,7 @@ import {
     if (focusedElement) {
       focusedElement.handleMouseEvent(me);
       if (me.type == "mouseup") {
-        if (debug) console.log(`lost mouse focus ${focusedElement}`);
+        //if (debug) console.log(`lost mouse focus ${focusedElement}`);
         focusedElement = null;
       }
       return;
@@ -81,14 +81,14 @@ import {
   function updateEnterExit(me: SKMouseEvent, el?: SKElement) {
     if (el != lastElementEntered) {
       if (lastElementEntered) {
-        if (debug) console.log(`exit ${lastElementEntered}`);
+        //if (debug) console.log(`exit ${lastElementEntered}`);
         lastElementEntered.handleMouseEvent({
           ...me,
           type: "mouseexit",
         });
       }
       if (el) {
-        if (debug) console.log(`enter ${el}`);
+        //if (debug) console.log(`enter ${el}`);
         el.handleMouseEvent({ ...me, type: "mouseenter" });
       }
       lastElementEntered = el;

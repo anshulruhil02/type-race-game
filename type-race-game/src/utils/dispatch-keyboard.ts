@@ -5,7 +5,7 @@ import {
   
   const debug = true;
   
-  if (debug) console.log("load dispatch-keyboard module");
+  //if (debug) console.log("load dispatch-keyboard module");
   
   let focusedElement: SKElement | null = null;
   
@@ -21,7 +21,7 @@ import {
         timeStamp: performance.now(),
         key: null,
       } as SKKeyboardEvent);
-      if (debug) console.log(`lost keyboard focus ${focusedElement}`);
+      //if (debug) console.log(`lost keyboard focus ${focusedElement}`);
     }
     // send focus in to new element
     element.handleKeyboardEvent({
@@ -30,7 +30,7 @@ import {
       key: null,
     } as SKKeyboardEvent);
     focusedElement = element;
-    if (debug) console.log(`gained keyboard focus ${focusedElement}`);
+    //if (debug) console.log(`gained keyboard focus ${focusedElement}`);
   }
   
   /**
@@ -39,9 +39,9 @@ import {
    */
   export function keyboardDispatch(ke: SKKeyboardEvent) {
     if (debug)
-      console.log(
-        `keyboardDispatch: key '${ke.key}' to ${focusedElement || "no focus"}`
-      );
+      // console.log(
+      //   `keyboardDispatch: key '${ke.key}' to ${focusedElement || "no focus"}`
+      // );
     focusedElement?.handleKeyboardEvent(ke);
   }
   

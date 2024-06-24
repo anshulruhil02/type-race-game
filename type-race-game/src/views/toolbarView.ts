@@ -25,6 +25,14 @@ export class ToolBarView extends SKContainer implements Observer {
     this.addChild(this.deleteGameButton);
     this.addChild(this.clearGamesButton);
 
+    this.addGameButton.fillWidth = 1;
+    this.deleteGameButton.fillWidth = 1;
+    this.clearGamesButton.fillWidth = 1;
+
+    this.addGameButton.fillHeight = 1;
+    this.deleteGameButton.fillHeight = 1;
+    this.clearGamesButton.fillHeight = 1;
+
     this.addGameButton.addEventListener("action", () => this.gameController.addGame());
     this.deleteGameButton.addEventListener("action", () => this.gameController.deleteGame());
     this.clearGamesButton.addEventListener("action", () => this.gameController.clearGames());

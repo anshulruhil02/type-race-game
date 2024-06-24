@@ -19,7 +19,6 @@ export class TextInputView extends SKTextfield implements Observer {
 
         this.addEventListener("textchanged", (e) => {
             const tf = e.source as SKTextfield;
-            console.log(`inputText textchanged '${tf.text}'`);
             if (this.gameProgressModel.matchWord(tf.text)) {
                 tf.text = ""; // Clear the text field on match
             }
@@ -29,11 +28,5 @@ export class TextInputView extends SKTextfield implements Observer {
     }
 
     update(): void {
-        const selectedBar = this.gameProgressModel.selectedGameProgressBar;
-        if (selectedBar) {
-            console.log(`TextInputView: Currently selected game progress bar ID: ${selectedBar.id}`);
-        } else {
-            console.log("TextInputView: No game progress bar selected");
-        }
     }
 }
