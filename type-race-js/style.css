@@ -1,0 +1,141 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#toolbar {
+  height: 50px;
+  background-color: lightgray;
+  border: 1px solid black;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  gap: 10px;
+}
+
+.toolbar-left button,
+.toolbar-right button,
+.toolbar-right select {
+  width: 150px;
+  max-width: 150px;
+  flex-shrink: 1;
+}
+
+#content {
+  display: flex;
+  flex: 1;
+  overflow: hidden; /* Ensure content doesn't overflow out of the main container */
+}
+
+#left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  max-width: 66.67%; /* Fixed width for the left container */
+  box-sizing: border-box;
+}
+
+#right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 20px;
+  overflow-y: auto; /* Allow vertical scrolling for the right container */
+  box-sizing: border-box;
+}
+
+.game-area {
+  flex: 2;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.game-console {
+  flex: 1;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-input {
+  flex: 1; /* Allow this element to grow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-input input {
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+}
+
+.game-properties-input {
+  flex: 1; /* Allow this element to grow */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.font-size,
+.num-words {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1; /* Make these elements take equal space */
+}
+
+.font-size label,
+.num-words label {
+  flex: 1;
+}
+
+.font-size input,
+.num-words input {
+  flex: 3; /* Allow input fields to take more space */
+  width: 100%; /* Ensure inputs take the full width available */
+}
+
+.reset-button {
+  flex: 1; /* Allow this element to grow */
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-progress {
+  flex: 1; /* Allow this element to grow */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
