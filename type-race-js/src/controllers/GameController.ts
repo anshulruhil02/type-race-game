@@ -11,7 +11,7 @@ export class GameController {
     this.view.bindAddGame(this.handleAddGame);
     this.view.bindDeleteGame(this.handleDeleteGame);
     this.view.bindClearGames(this.handleClearGames);
-    // Bind other methods as needed
+    this.view.bindSelectGame(this.handleSelectGame);
   }
 
   handleAddGame = () => {
@@ -22,12 +22,19 @@ export class GameController {
 
   handleDeleteGame = () => {
     this.model.deleteGame();
-  };    
+  };
 
   handleClearGames = () => {
     this.model.clearGames();
   };
 
+  handleSelectGame = (gameId: number) => {
+    if (this.model.isGameSelected(gameId)) {
+      this.model.unselectGame(gameId);
+    } else {
+      this.model.selectGame(gameId);
+    }
+  };
 
   // Implement other handlers
 }

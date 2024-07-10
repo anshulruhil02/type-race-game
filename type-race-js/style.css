@@ -139,3 +139,30 @@ body, html {
   justify-content: center;
   align-items: center;
 }
+
+/* styles.css */
+#gameArea {
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Add space between the words */
+  padding: 10px;
+  overflow-y: auto;
+
+}
+
+.word {
+  padding: 5px 5px; /* Adjust padding */
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 16px; /* This will be dynamically updated */
+  height: fit-content;
+  width: fit-content;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.word:hover {
+  background-color: lightgray;
+  border-color: gray;
+}

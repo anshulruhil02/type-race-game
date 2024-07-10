@@ -1,14 +1,33 @@
 export class GameProgressView {
-    private gameProgressContainer: HTMLElement | null;
+    private gameProgressContainer: HTMLDivElement | null;
   
     constructor() {
-      this.gameProgressContainer = document.getElementById('gameProgress');
+      this.gameProgressContainer = document.getElementById('gameProgress') as HTMLDivElement;
+    }
+  
+    setProgress(progress: string) {
       if (this.gameProgressContainer) {
-        this.gameProgressContainer.className = 'game-progress';
-        this.gameProgressContainer.innerHTML = `0 / 20 Words Matched`;
+        this.gameProgressContainer.innerText = progress;
       }
     }
   
-    // Add methods to manipulate the game progress as needed
-  }
+    clear() {
+      if (this.gameProgressContainer) {
+        this.gameProgressContainer.innerText = '';
+      }
+    }
   
+    enable() {
+      if (this.gameProgressContainer) {
+        this.gameProgressContainer.style.pointerEvents = 'auto';
+        this.gameProgressContainer.style.opacity = '1';
+      }
+    }
+  
+    disable() {
+      if (this.gameProgressContainer) {
+        this.gameProgressContainer.style.pointerEvents = 'none';
+        this.gameProgressContainer.style.opacity = '0.5';
+      }
+    }
+  }
