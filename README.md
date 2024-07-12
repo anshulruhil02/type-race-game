@@ -1,6 +1,10 @@
 # type-race-game
 
-
+How to run?
+- Open terminal
+- cd/type-race-js
+- npm install
+- npm run dev
 
 
 
