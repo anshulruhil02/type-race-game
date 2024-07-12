@@ -1,3 +1,5 @@
+import { GameModel } from "../models/GameModel";
+
 export class ToolbarView {
   private addGameButton: HTMLButtonElement | null;
   private deleteGameButton: HTMLButtonElement | null;
@@ -6,7 +8,7 @@ export class ToolbarView {
   private redoButton: HTMLButtonElement | null;
   private languageSelect: HTMLSelectElement | null;
 
-  constructor() {
+  constructor(private model: GameModel) {
     const toolbar = document.getElementById('toolbar');
     if (toolbar) {
       toolbar.innerHTML = `
@@ -19,8 +21,8 @@ export class ToolbarView {
           <button id="undo">Undo</button>
           <button id="redo">Redo</button>
           <select id="language">
-            <option value="english">English</option>
-            <option value="spanish">Spanish</option>
+            <option value="en-CA">English</option>
+            <option value="fr-CA">French</option>
           </select>
         </div>
       `;
@@ -43,11 +45,32 @@ export class ToolbarView {
     if (this.deleteGameButton) {
       this.deleteGameButton.addEventListener('click', handler);
     }
-  } 
+  }
 
   bindClearGames(handler: () => void) {
     if (this.clearGamesButton) {
       this.clearGamesButton.addEventListener('click', handler);
+    }
+  }
+
+  bindUndo(handler: () => void) {
+    if (this.undoButton) {
+      this.undoButton.addEventListener('click', handler);
+    }
+  }
+
+  bindRedo(handler: () => void) {
+    if (this.redoButton) {
+      this.redoButton.addEventListener('click', handler);
+    }
+  }
+
+  bindLanguageChange(handler: (language: string) => void) { // Add this method
+    if (this.languageSelect) {
+      this.languageSelect.addEventListener('change', (event) => {
+        const target = event.target as HTMLSelectElement;
+        handler(target.value);
+      });
     }
   }
 
@@ -63,5 +86,18 @@ export class ToolbarView {
     }
   }
 
-  // Bind other elements similarly
+  updateUndoRedoButtons(canUndo: boolean, canRedo: boolean) {
+    if (this.undoButton) {
+      this.undoButton.disabled = !canUndo;
+    }
+    if (this.redoButton) {
+      this.redoButton.disabled = !canRedo;
+    }
+  }
+
+  update() {
+    const canUndo = this.model.canUndo;
+    const canRedo = this.model.canRedo;
+    this.updateUndoRedoButtons(canUndo, canRedo);
+  }
 }

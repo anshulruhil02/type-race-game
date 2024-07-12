@@ -17,7 +17,7 @@ export class LeftView {
       `;
     }
 
-    this.gameAreaView = new GameAreaView();
+    this.gameAreaView = new GameAreaView(gameModel);
     this.gameConsoleView = new GameConsoleView(gameModel, this.gameAreaView, rightView);
   }
 

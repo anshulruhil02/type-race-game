@@ -92,6 +92,7 @@ export class GameConsoleView {
   private handleResetGame() {
     if (this.selectedGameId !== null) {
       this.model.resetGame(this.selectedGameId);
+      this.textInputView.resetWordIndex();
       const game = this.model.getSelectedGame();
       if (game) {
         this.update(game); // Update the view with the reset values

@@ -12,11 +12,12 @@ export class GameView implements Observer {
   private game!: Game;
 
   constructor(model: GameModel) {
-    this.toolbar = new ToolbarView();
+    this.toolbar = new ToolbarView(model);
     this.rightView = new RightView();
     this.leftView = new LeftView(this.game, model, this.rightView);
     this.model = model;
     this.model.addObserver(this); // Register as an observer
+    this.toolbar.bindLanguageChange(this.handleLanguageChange);
   }
 
   bindAddGame(handler: () => void) {
@@ -35,6 +36,17 @@ export class GameView implements Observer {
     this.rightView.bindSelectGame(handler);
   }
 
+  bindUndo(handler: () => void) {
+    this.toolbar.bindUndo(handler);
+  }
+
+  bindRedo(handler: () => void) {
+    this.toolbar.bindRedo(handler);
+  }
+
+  private handleLanguageChange = (language: string) => {
+    this.model.setLanguage(language);
+  }
   update() {
     // Clear existing games before rendering new state
     this.rightView.clearGames();
@@ -64,5 +76,8 @@ export class GameView implements Observer {
       this.leftView.clearGameArea();
       this.leftView.clearGameConsole();
     }
+
+    // Update the state of the undo and redo buttons
+    this.toolbar.updateUndoRedoButtons(this.model.canUndo, this.model.canRedo);
   }
 }

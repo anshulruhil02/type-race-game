@@ -12,20 +12,28 @@ export class GameController {
     this.view.bindDeleteGame(this.handleDeleteGame);
     this.view.bindClearGames(this.handleClearGames);
     this.view.bindSelectGame(this.handleSelectGame);
+    this.view.bindUndo(this.handleUndo);
+    this.view.bindRedo(this.handleRedo);
+
+    // Update the view initially to reflect the current state
+    //this.updateView();
   }
 
   handleAddGame = () => {
     if (!this.model.isMaxGamesReached()) {
       this.model.addGame();
+      //this.updateView();
     }
   };
 
   handleDeleteGame = () => {
     this.model.deleteGame();
+    //this.updateView();
   };
 
   handleClearGames = () => {
     this.model.clearGames();
+    //this.updateView();
   };
 
   handleSelectGame = (gameId: number) => {
@@ -34,7 +42,18 @@ export class GameController {
     } else {
       this.model.selectGame(gameId);
     }
+    //this.updateView();
   };
 
-  // Implement other handlers
+  handleUndo = () => {
+    this.model.undo();
+    //this.updateView();
+  };
+
+  handleRedo = () => {
+    this.model.redo();
+    //this.updateView();
+  };
+
+
 }
